@@ -13,13 +13,16 @@
 ## Syntax
 
 <x><pre>
-**Variable**            ::= '$' Identifier
+**Variable**            ::= '$' Identifier | Identifier '.$' [PublicIdentifier][]
 **VariableDeclaration** ::= Variable ':' Expression ('!global' | '!default')*
 </pre></x>
 
-No whitespace is allowed after `$`. Each of `!global` and `!default` is allowed
-at most once. As with all statements, a `VariableDeclaration` must be separated
-from other statements with a semicolon.
+[PublicIdentifier]: modules.md#syntax
+
+No whitespace is allowed after the `$` or before or after the `.$` in
+`Variable`. Each of `!global` and `!default` is allowed at most once in
+`VariableDeclaration`. As with all statements, a `VariableDeclaration` must be
+separated from other statements with a semicolon.
 
 ## Definitions
 

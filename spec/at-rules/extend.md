@@ -6,7 +6,12 @@ many interacting layers and a lot of intricate case analysis.
 
 ## Table of Contents
 
-* [Definition](#definition)
+* [Definitions](#definitions)
+  * [Extender](#extender)
+  * [Target](#target)
+  * [Extendee](#extendee)
+  * [The `extend()` Function](#the-extend-function)
+* [Semantics](#semantics)
   * [Limitations](#limitations)
   * [Specificity](#specificity)
     * [The First Law](#the-first-law)
@@ -14,8 +19,8 @@ many interacting layers and a lot of intricate case analysis.
 
 ## Definition
 
-First, let's give names to the various selectors involved with a given use of
-`@extend`:
+These definitions provide names to the various selectors involved with a given
+use of `@extend`:
 
 ```scss
 .extender {
@@ -28,16 +33,37 @@ First, let's give names to the various selectors involved with a given use of
 }
 ```
 
-The **extender** is the selector list for the style rule in which the `@extend`
-rule appears. The **target** is the simple selector that's used as an argument
-to `@extend`. The **extendee** is the selector list elsewhere in the stylesheet
-that contains the target and is modified to include the extender as well. We
-also use the function `extend(extendee, target, extender)` to refer to the
-result of extending `extendee` with `extender {@extend target}` (much like the
-Sass function `selector-extend()`).
+### Extender
 
-Given these definitions, the `@extend` rule means that **all elements matching
-the extender should be styled as though they match the target as well**.
+An `@extend` rule's *extender* is the [selector list][] for the style rule in
+which the `@extend` rule appears.
+
+[selector list]: https://drafts.csswg.org/selectors-4/#selector-list
+
+### Target
+
+An `@extend` rule's *target* is the [simple selector][] that's used as an
+argument to `@extend`.
+
+[simple selector]: https://drafts.csswg.org/selectors-4/#simple
+
+### Extendee
+
+An *extendee* is a selector list being modified by an `@extend` rule. It's only
+defined within the scope of a single application of a given `@extend` rule. If
+an extendee contains that rule's [target](#target), it will usually be modified
+to include the rule's [extender](#extender) as well.
+
+### The `extend()` Function
+
+As a shorthand, we use the function notation `extend(extendee, target,
+extender)` to refer to the result of extending `extendee` with `extender
+{@extend target}` (much like the Sass function `selector-extend()`).
+
+## Semantics
+
+The `@extend` rule means that all elements matching the [extender](#extender)
+should be styled as though they match the [target](#target) as well.
 
 ### Limitations
 

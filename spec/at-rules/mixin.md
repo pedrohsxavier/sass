@@ -10,12 +10,16 @@
 The syntax for an `@include` rule is as follows:
 
 <x><pre>
-**IncludeRule**      ::= '@include' [\<ident-token>][] ArgumentInvocation? ContentBlock?
+**IncludeRule**      ::= '@include' [NamespacedIdentifier][] ArgumentInvocation?
+                         ContentBlock?
 **ContentBlock**     ::= UsingDeclaration? '{' Statements '}'
 **UsingDeclaration** ::= 'using' ArgumentDeclaration
 </pre></x>
 
-[\<ident-token>]: https://drafts.csswg.org/css-syntax-3/#ident-token-diagram
+[NamespacedIdentifier]: ../modules.md#syntax
+
+No whitespace is allowed between the `NamespacedIdentifier` and the
+`ArgumentInvocation` in `IncludeRule`.
 
 ## `@content`
 
